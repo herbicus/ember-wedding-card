@@ -1,0 +1,224 @@
+// -------------------------------------
+//   Utilities
+// -------------------------------------
+// ----- Placeholders, Extends, Mixins, and Functions
+// -------------------------------------
+
+// -------------------------------------
+//   Placeholders
+// -------------------------------------
+
+// Clearfix
+.clearfix:before,
+.clearfix:after {
+  content: " "; 
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+@mixin shadow-border($color) {
+  -webkit-box-shadow: 0px 0px 1px 1px $color, 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 1px 1px $color, 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+@mixin fade-callout($value, $color, $font-color){
+   background: rgba(0, 0, 0, $value);
+  -webkit-box-shadow: 0px 0px 1px 1px $color, 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 1px 1px $color, 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+    color: $font-color;
+}
+
+
+@mixin bg-contain {
+  background-position: center, center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+       -o-background-size: contain;
+          background-size: contain;
+}
+
+@mixin bg-cover {
+  background-position: center, center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+}
+
+// Generic Hover States
+@mixin grayscale-hover {
+  @include transition (all 0.3s ease-in-out);
+  &:hover {
+    cursor: pointer;
+    -webkit-filter: grayscale(100%);
+       -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+         -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+  }
+}
+
+@mixin fade-hover {
+    @include transition (all 0.3s ease-in-out);
+    &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+}
+
+@mixin border-hover($color) {
+  @include transition (all 0.3s ease-in-out);
+    &:hover {
+      cursor: pointer;
+      -webkit-box-shadow: 0px 0px 1px 1px $color, 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+              box-shadow: 0px 0px 1px 1px $color, 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@mixin pop-hover {
+    @include transition (all 0.3s $ease-in-out-back);
+    &:hover {
+        cursor: pointer;
+        @include transform(scale(1.15));
+    }
+}
+
+@mixin underline-hover($color) {
+    @include transition (all 0.3s ease-in-out);
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    &:after {    
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: $color;
+        @include transition(width 0.3s $ease-out-back 0.3s, left 0.3s $ease-out-back 0.3s);
+        width: 0;
+    }
+    &:hover:after {
+        cursor: pointer;
+        width: 100%; 
+        left: 0; 
+    }
+}
+
+@mixin coverer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin centerer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+}
+
+@mixin word-wrap() {
+    word-break:     break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens:    auto;
+    hyphens:         auto;
+}
+
+@mixin ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// ----- Adds responsive breakpoints. ----- //
+@mixin media-query($width) {
+    
+    @media screen and (min-width: $width) { @content; }
+    
+    @if $width == desktop {
+        @media screen and (min-width: 1280px) { @content; }
+    }
+    @if $width == laptop {
+        @media screen and (min-width: 960px) { @content; }
+    }
+    @else if $width == tablet {
+        @media screen and (min-width: 768px) { @content; }
+    }
+    @else if $width == android {
+        @media screen and (min-width: 480px)  { @content; }
+    }
+    @else if $width == iphone {
+        @media screen and (min-width: 320px)  { @content; }
+    }
+}
+
+// ----- Adds accessibility pseudo selectors to hover states. ----- //
+ @mixin attention() {
+    &:hover,
+    &:active,
+    &:focus {
+        @include transition (all 0.3s ease-in-out);
+        cursor: pointer;
+        @content;
+    }
+}
+
+// ----- Rem font size mixin with px fallback. ----- //
+ @mixin font-size($px-width) {
+   font-size: #{$px-width * 10}px;
+   font-size: #{$px-width}rem;
+}
+
+// ----- Rem line-height mixin with px fallback. ----- //
+@mixin line-height($px-height) {
+    line-height: #{$px-height * 10}px;
+    line-height: #{$px-height}rem;
+}
+
+// -------------------------------------
+//   Functions
+// -------------------------------------
+
+@function black($opacity) {
+    @return rgba(black, $opacity)
+}
+
+@function white($opacity) {
+    @return rgba(white, $opacity)
+}
+
+// -------------------------------------
+//   Utilities
+// -------------------------------------
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.show-me {
+	@include shadow-border($brightRed);
+}

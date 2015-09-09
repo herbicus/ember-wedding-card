@@ -1,0 +1,171 @@
+// -------------------------------------
+//   app.scss
+// -------------------------------------
+// ----- Contains an import section for libs, core, and modules, the inbox,
+// ----- and a shame section for quick fixes and hacks ----- //
+
+// -------------------------------------
+//   Libs
+// -------------------------------------
+
+// NORMALIZE
+@import "libs/normalize";
+
+// IMPORT BOURBON
+@import "libs/bourbon/bourbon";
+@import "libs/neat/neat";
+
+// -------------------------------------
+//   Core
+// -------------------------------------
+
+// ----- Settings - @Font-Face Declarations, Variables ----- //
+@import "core/settings";
+
+// ----- Utilities - Extends, Functions, and Mixins ----- //
+@import "core/utilities";
+
+// ----- Base - Base-level tags (body, p, etc.) ----- //
+@import "core/base";
+
+// ----- Typography - Fonts and Colors ----- //
+@import "core/typography";
+
+// ----- Layout - Margin, Padding, Sizing ----- //
+@import "core/layout";
+
+// -------------------------------------
+//   Project Specific Partials
+// -------------------------------------
+
+// -------------------------------------
+//   Inbox
+// -------------------------------------
+// ----- The inbox allows developers, and those not actively working on the CSS,
+// to quickly add styles that are easily seen by the maintainer of the file.
+// -------------------------------------
+
+body {
+	background-color: #d5f6ef;
+	background: #d5f6ef;
+	background: url("../images/bg-wood.jpg")no-repeat top center;
+	@include bg-cover;
+	position: relative;
+	overflow: hidden;
+}
+
+.greeting {
+	text-align: center;
+	font: 400 24px/24px 'Josefin Slab', serif;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	width: 100%;
+	position: absolute;
+	top: 20px;
+	z-index: 100; 
+	
+	
+	h1, p, span {
+		text-shadow: 0 2px 2px $white;
+	}
+	
+	h1 {
+		font: 400 32px/32px 'Josefin Slab', serif;
+	}
+
+	.greeter {
+		position: relative;
+		top: 20px;
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	@include media-query(481px) {
+		
+		h1 {
+			font-size: 28px;
+		}
+
+		p {
+			font-size: 22px 
+		}
+
+		span {
+			font-size: 28px; 
+		}
+
+	}
+
+	@include media-query(laptop) {
+		h1 {
+			font-size: 42px;
+		}
+
+		p {
+			font-size: 28px 
+		}
+
+		span {
+			font-size: 32px; 
+		}
+	}
+
+	@include media-query(laptop) {
+		top: 100px;
+	}
+}
+
+
+.flower-container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	display: none;
+	opacity: 0;
+	visibility: hidden;
+	margin: 0 auto;
+}
+
+.flower {
+	@include centerer;
+	top: 90%;
+	top: 120%;
+	opacity: 0;
+	visibility: hidden;
+	
+}
+
+.flower-1 {
+	left: 10%;
+}
+
+.flower-2 {
+	left: 40%;
+}
+
+.flower-3 {
+	top: 98% !important;
+	left: 90%;
+}
+
+.flower-4 {
+	left: 15%;
+}
+
+.flower-5 {
+	left: 80%;
+}
+
+.flower-6 {
+	left: 60%;
+}
+
+
+
+// -------------------------------------
+//   Shame
+// -------------------------------------
+// ----- Need to add a quick fix, hack, or questionable technique?
+// ----- Add it here, fix it later.
+// -------------------------------------
